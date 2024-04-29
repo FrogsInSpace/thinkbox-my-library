@@ -29,7 +29,7 @@ TOOL_REQUIRES: list[str] = [
 ]
 
 REQUIRES: list[str] = [
-    'thinkboxlibrary/1.0.0',
+    'thinkboxlibrary/1.0.1',
     'mayasdk/1.0.0',
     'tinyxml2/9.0.0'
 ]
