@@ -8,6 +8,7 @@ import shutil
 
 VALID_MAYA_CONFIGS: dict[tuple[str, str], set[str]] = {
     ('Visual Studio', '16'): { '2022', '2023' },
+    ('Visual Studio', '17'): { '2024', '2025' },
     ('gcc', '7'): { '2022', '2023' },
     ('gcc', '9'): { '2022', '2023' },
     ('apple-clang', '10.0'): { '2022', '2023' }
@@ -16,7 +17,7 @@ VALID_MAYA_CONFIGS: dict[tuple[str, str], set[str]] = {
 SETTINGS: dict[str, Any] = {
     'os': ['Windows', 'Linux', 'Macos'],
     'compiler': {
-        'Visual Studio': {'version': ['16']},
+        'Visual Studio': {'version': ['16', '17']},
         'gcc': {'version': ['7', '9']},
         'apple-clang': {'version': ['10.0']}
     },
@@ -64,13 +65,13 @@ class MayaSDKConan(ConanFile):
     description: str = 'A Conan package containing the Autodesk Maya SDK.'
     settings: dict[str, Any] = SETTINGS
     options: dict[str, Any] = {
-        'maya_version': ['2022', '2023'],
+        'maya_version': ['2022', '2023', '2024', '2025'],
         'maya_path': 'ANY'
     }
 
     def configure(self) -> None:
         if self.options.maya_version == None:
-            self.options.maya_version = '2022'
+            self.options.maya_version = '2024'
 
         if self.options.maya_path == None:
             self.options.maya_path = DEFAULT_MAYA_PATHS[str(self.settings.os)].format(self.options.maya_version)
